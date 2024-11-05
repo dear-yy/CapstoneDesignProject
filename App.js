@@ -1,20 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// React와 필요한 컴포넌트들을 import합니다.
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import Chatbot from './Chatbot'; // Chatbot 컴포넌트를 import합니다.
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => {
+   return (
+      // SafeAreaView를 사용하여 iOS/Android에서 안전한 영역에 표시되도록 합니다.
+      <SafeAreaView style={{ flex: 1 }}>
+         <Chatbot />
+      </SafeAreaView>
+   );
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// App 컴포넌트를 기본 내보내기로 설정하여 다른 파일에서 import할 수 있도록 합니다.
+export default App;
