@@ -5,9 +5,9 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Chatbot from './Chatbot'; // Chatbot 컴포넌트를 import합니다.
-import Battle from './Battle';   // 새로운 Battle 컴포넌트를 import합니다.
-import Setting from './Setting'; // 새로운 Setting 컴포넌트를 import합니다.
+import Chatbot from './components/Chatbot'; // Chatbot 컴포넌트를 import합니다.
+import Battle from './screens/Battle';   // 새로운 Battle 컴포넌트를 import합니다.
+import Setting from './screens/Setting'; // 새로운 Setting 컴포넌트를 import합니다.
 
 const Tab = createBottomTabNavigator();
 

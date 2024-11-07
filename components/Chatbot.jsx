@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, ScrollView, StyleSheet } from 'react-native';
 import { OPENAI_API_KEY } from '@env';
-import styles from './ChatbotStyles'; // Importing the styles
+import styles from '../styles/ChatbotStyles'; // Importing the styles
 
 const Chatbot = () => {
+   //console.log("API Key:", OPENAI_API_KEY);
+
    const [messages, setMessages] = useState([]);
    const [userInput, setUserInput] = useState('');
    const [loading, setLoading] = useState(false);
@@ -37,6 +39,7 @@ const Chatbot = () => {
          });
 
          const data = await response.json();
+         console.log(data);
          const quizQuestion = data.choices?.[0]?.message?.content || '퀴즈 질문을 불러올 수 없습니다.';
          
          // 퀴즈 모드를 활성화하고 질문을 저장
