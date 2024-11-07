@@ -1,14 +1,28 @@
+// App.js
+
 // React와 필요한 컴포넌트들을 import합니다.
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Chatbot from './Chatbot'; // Chatbot 컴포넌트를 import합니다.
+import Battle from './Battle';   // 새로운 Battle 컴포넌트를 import합니다.
+import Setting from './Setting'; // 새로운 Setting 컴포넌트를 import합니다.
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
    return (
-      // SafeAreaView를 사용하여 iOS/Android에서 안전한 영역에 표시되도록 합니다.
-      <SafeAreaView style={{ flex: 1 }}>
-         <Chatbot />
-      </SafeAreaView>
+      <NavigationContainer>
+         {/* // SafeAreaView를 사용하여 iOS/Android에서 안전한 영역에 표시되도록 합니다. */}
+         <SafeAreaView style={{ flex: 1 }}>
+            <Tab.Navigator>
+               <Tab.Screen name="Chatbot" component={Chatbot} />
+               <Tab.Screen name="Battle" component={Battle} />
+               <Tab.Screen name="Setting" component={Setting} />
+            </Tab.Navigator>
+         </SafeAreaView>
+      </NavigationContainer>
    );
 };
 
