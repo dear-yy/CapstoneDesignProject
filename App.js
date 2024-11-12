@@ -5,7 +5,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Chatbot from './screens/Chatbot'; // Chatbot을 import합니다.
+import Chatbot from './Chatbot'; // Chatbot을 import합니다.
 import Battle from './screens/Battle';   // Battle screen을 import합니다.
 import Setting from './screens/Setting'; // Setting screen을 import합니다.
 
