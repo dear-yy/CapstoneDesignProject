@@ -31,12 +31,13 @@
 |:---  |---  |
 | (1) 요구사항 정의 | ![ERD](https://github.com/dear-yy/CapstoneDesignProject/blob/main/ERD.jpg)
 | (2) 전체 시스템 구성 | 프로젝트를 위하여, SW 전체 시스템의 구조를 보인다. (가능하다면, 사용자도 포함) <br> 주요 SW 모듈을 보이고, 각각의 역할을 기술한다. <br>만약, 오픈소스 혹은 외부 모듈을 사용한다면 이 또한 기술한다. 
-```mermaid
-graph TD;
-    사용자(모바일 앱) -->|요청/응답| 백엔드 서버(Django);
-    백엔드 서버(Django) -->|데이터 저장/조회| 데이터베이스(PostgreSQL);
-    백엔드 서버(Django) -->|퀴즈 생성 및 질문 응답| OpenAI API(GPT);
-    백엔드 서버(Django) -->|뉴스/아티클 검색| Custom Search API;<br>**주요 SW 모듈 및 역할** <br>Flutter (프론트엔드 앱): 사용자 인터페이스 및 퀴즈 채팅 및 배틀 화면과 랭킹 화면 제공 <br> Django (백엔드 API): 사용자 정보 관리, 퀴즈 생성, 점수 저장, 매칭 시스템 <br> PostgreSQL (DB): 사용자 데이터, 퀴즈 기록, 채팅 내역, 배틀 결과 저장 <br> **오픈소스 사용** <br> Django Rest Framework (DRF): API 개발 <br> Django Channels: WebSocket 기반 실시간 통신 <br> Custom Search JSON API: 키워드를 이용하여 뉴스, 아티클을 선정 |
+'''
+사용자 (모바일 앱)  <->  백엔드 서버 (Django)  <->  데이터베이스 (PostgreSQL)
+                                    |
+                                    V
+                     OpenAI API (GPT) + Custom Search API
+'''
+<br>**주요 SW 모듈 및 역할** <br>Flutter (프론트엔드 앱): 사용자 인터페이스 및 퀴즈 채팅 및 배틀 화면과 랭킹 화면 제공 <br> Django (백엔드 API): 사용자 정보 관리, 퀴즈 생성, 점수 저장, 매칭 시스템 <br> PostgreSQL (DB): 사용자 데이터, 퀴즈 기록, 채팅 내역, 배틀 결과 저장 <br> **오픈소스 사용** <br> Django Rest Framework (DRF): API 개발 <br> Django Channels: WebSocket 기반 실시간 통신 <br> Custom Search JSON API: 키워드를 이용하여 뉴스, 아티클을 선정 |
 | (3) 주요엔진 및 기능 설계 | 프로젝트의 주요 기능 혹은 모듈의 설계내용에 대하여 기술한다 <br> SW 구조 그림에 있는 각 Module의 상세 구현내용을 자세히 기술한다. <br> GPT API (OpenAI): 기사의 주요 내용 요약 및 적절 기사 추천, 퀴즈 3문제 생성, 모범 답안 생성 및 서술형 점수 부여하는데 사용하며, AI에게 명확한 지시사항을 제공하여 원하는 출력값을 유도하는 instruction-base-prompting기법을 기반으로 을 기반으로 구현함<br> WebSocket (Django Channels): 메세지 전송을 위한 위한 실시간 통신 제공 모듈로, 채팅형 퀴즈 형식을 구현하기 위해 사용|
 | (4) 주요 기능의 구현 | *<주요기능리스트>에 정의된 기능 중 최소 2개 이상에 대한 상세 구현내용을 기술한다.*<br> 아티클 스크래핑은 퀴즈 출제를 위해 최종 선택된 공신력 있는 아티클을 기반으로 BeautifulSoup을 활용하여, 해당 기사의 본문을 추출하는 방식으로 수행된다.<br> 키워드 추출은 사용자 입력을 기반으로 GPT API 통해 키워드 생성한다 <br>경쟁 모드는 배틀 기능으로 Redis의 Queue 기능을 사용하여, 대기열에 추가된 접속 중인 사용자 두 명을 1:1로 매칭 시켜 배틀방을 생성하면서 시작한다. 사용자1과 2이 동시에 배틀룸에 접속한 상태에서 두 사용자에게 동일한 아티클 및 퀴즈 3개를 제공하여 제한 시간 내에 더 높은 점수를 획득한 사용자가 이기는 게임 형식의 기능이다. <br>   |
 | (5) 기타 | *기타 사항을 기술*  |
